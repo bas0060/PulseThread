@@ -1,0 +1,78 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider = "prisma-client"
+  output   = "../lib/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model UserProfile {
+  id        String   @id
+  username  String   @unique
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+
+  @@map("user_profiles")
+}
+
+model Post {
+  id        String   @id @default(uuid()) @db.Uuid
+  authorId  String   @map("author_id")
+  title     String
+  body      String
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+
+  postTags PostTag[]
+  comments Comment[]
+
+  @@map("posts")
+}
+
+model Tag {
+  slug      String @id
+  label     String
+  hashColor String @map("hash_color")
+
+  postTags PostTag[]
+
+  @@map("tags")
+}
+
+model PostTag {
+  postId  String @map("post_id") @db.Uuid
+  tagSlug String @map("tag_slug")
+
+  post Post @relation(fields: [postId], references: [id], onDelete: Cascade)
+  tag  Tag  @relation(fields: [tagSlug], references: [slug])
+
+  @@id([postId, tagSlug])
+  @@map("post_tags")
+}
+
+model Comment {
+  id        String   @id @default(uuid()) @db.Uuid
+  postId    String   @map("post_id") @db.Uuid
+  authorId  String   @map("author_id")
+  parentId  String?  @map("parent_id") @db.Uuid
+  body      String
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+
+  post Post @relation(fields: [postId], references: [id], onDelete: Cascade)
+
+  @@map("comments")
+}
+
+model Vote {
+  userId     String @map("user_id")
+  targetType String @map("target_type")
+  targetId   String @map("target_id") @db.Uuid
+  value      Int    @db.SmallInt
+
+  @@id([userId, targetType, targetId])
+  @@map("votes")
+}
