@@ -1,4 +1,4 @@
-import { PrismaPg } from "@prisma/adapter-pg";
+import { PrismaNeon } from "@prisma/adapter-neon";
 import { PrismaClient } from "./generated/prisma/client";
 
 const globalForPrisma = globalThis as unknown as { prisma: PrismaClient };
@@ -11,10 +11,7 @@ function createPrisma(): PrismaClient {
     );
   }
 
-  const adapter = new PrismaPg({
-    connectionString,
-    ssl: { rejectUnauthorized: false },
-  });
+  const adapter = new PrismaNeon({ connectionString });
 
   return new PrismaClient({
     adapter,

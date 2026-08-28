@@ -1,5 +1,39 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
+# ⚡ PulseThread
+
+**PulseThread** is a fast, modern full-stack social media platform designed for real-time thread interactions, post creation, likes, comments, and seamless content sharing. Built with performance in mind using Next.js App Router and a serverless Neon PostgreSQL architecture.
+
+---
+
+## 🚀 Key Features
+
+- 📝 **Thread & Post Creation:** Share thoughts, images, and updates instantly.
+- ❤️ **Optimistic Engagement:** Instant like and comment feedback powered by React's `useOptimistic`.
+- 💬 **Interactive Comments:** Dynamic nested discussions and thread tracking.
+- 🔐 **Secure Authentication:** User signup, login, and session handling powered by Neon Auth.
+- ⚡ **High Performance:** Dynamic serverless database caching, image optimization, and fast server-side streaming via Next.js App Router.
+
+---
+
+## 🛠️ Tech Stack
+
+- **Framework:** [Next.js](https://nextjs.org/) (App Router, Server Actions, Server Components)
+- **Database:** [Neon Postgres](https://neon.tech/) (Serverless Postgres with Connection Pooling)
+- **Language:** TypeScript
+- **Styling:** Tailwind CSS
+- **Icons:** Lucide React
+
+---
+
+## 💻 Getting Started
+
+1. **Clone the repository:**
+   ```bash
+   git clone [https://github.com/YOUR_USERNAME/PulseThread.git](https://github.com/YOUR_USERNAME/PulseThread.git)
+   cd PulseThread
+   ```
+
 ## Getting Started
 
 First, run the development server:
