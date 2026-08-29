@@ -1,8 +1,15 @@
 // import { EnrichedCommentNode, nestCommentRows } from "../comment-tree";
 import { EnrichedCommentNode, nestCommentRows } from "../comment-tree";
-import { PostModel } from "../generated/prisma/models";
 import { prisma } from "../prisma";
 import { Comment, FeedSort, Post, Tag, User, VoteTarget } from "../types";
+
+type PostRow = {
+  id: string;
+  authorId: string;
+  title: string;
+  body: string;
+  createdAt: Date;
+};
 
 export async function batchAuthorsForIds(
   authorIds: string[],
@@ -254,7 +261,7 @@ async function batchUserVotesForComments(
 }
 
 function mapPostRow(
-  row: PostModel,
+  row: PostRow,
   tagSlugs: string[],
   commentCount: number,
 ): Post {

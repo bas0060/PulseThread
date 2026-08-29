@@ -5,8 +5,15 @@ import { getCurrentUserId } from "../auth";
 import { getUserVote } from "../db/queries";
 import { prisma } from "../prisma";
 import { Post } from "../types";
-import { PostModel } from "../generated/prisma/models";
 import { redirect } from "next/navigation";
+
+type PostRow = {
+  id: string;
+  authorId: string;
+  title: string;
+  body: string;
+  createdAt: Date;
+};
 
 export async function votePostAction(postId: string, value: -1 | 1) {
   const userId = await getCurrentUserId();
@@ -119,7 +126,7 @@ export async function addPost(input: {
 }
 
 function mapPostRow(
-  row: PostModel,
+  row: PostRow,
   tagSlugs: string[],
   commentCount: number,
 ): Post {

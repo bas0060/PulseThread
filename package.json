@@ -14,6 +14,7 @@
   "dependencies": {
     "@base-ui/react": "^1.6.0",
     "@neondatabase/auth": "^0.4.2-beta",
+    "@noble/ciphers": "^2.4.0",
     "@opennextjs/cloudflare": "^1.20.4",
     "@prisma/adapter-neon": "^7.10.0",
     "@prisma/adapter-pg": "^7.10.0",
@@ -22,6 +23,7 @@
     "clsx": "^2.1.1",
     "dotenv": "^17.4.2",
     "lucide-react": "^1.28.0",
+    "nanoid": "^6.0.1",
     "next": "^16.3.3",
     "pg-cloudflare": "^1.4.0",
     "react": "19.2.4",
